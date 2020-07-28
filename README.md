@@ -10,11 +10,21 @@ To run the application use:
 ```console
 (venv) root@04530a0636eb:/home/workspace/mask-rcnn/mask_rcnn_resnet101_atrous_coco_2018_01_28# python /home/workspace/main.py -m frozen_inference_graph.xml  -i /home/workspace/resources/prueba1.mp4 -l /opt/intel/openvino/deployment_tools/inference_engine/lib/intel64/libcpu_extension_sse4.so | ffmpeg -v warning -f rawvideo -pixel_format bgr24 -video_size 768x432 -i - http://0.0.0.0:3004/fac.ffm -framerate 24
 ```
+
+![alt text](https://github.com/joagovi/Deploy-a-People-Counter-App-at-the-Edge/blob/master/resources/image_count1.JPG "Web Application")
+
 To run the modified application use:
 
 ```console
 (venv) root@04530a0636eb:/home/workspace/mask-rcnn/mask_rcnn_resnet101_atrous_coco_2018_01_28# python /home/workspace/Proyect1_B/main.py -m frozen_inference_graph.xml  -i /home/workspace/resources/Pedestrian_Detect_2_1_1.mp4 -l /opt/intel/openvino/deployment_tools/inference_engine/lib/intel64/libcpu_extension_sse4.so | ffmpeg -v warning -f rawvideo -pixel_format bgr24 -video_size 768x432 -i - http://0.0.0.0:3004/fac.ffm -framerate 24
 ```
+Here is the result:
+
+![alt text](https://github.com/joagovi/Deploy-a-People-Counter-App-at-the-Edge/blob/master/resources/image_count2.JPG "Web Application")
+
+A video with the detection was also obtained:
+
+![Alt Text](https://github.com/joagovi/Deploy-a-People-Counter-App-at-the-Edge/blob/master/out2.gif)
 
 ## Explaining Custom Layers
 
