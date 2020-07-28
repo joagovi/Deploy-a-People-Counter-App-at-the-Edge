@@ -42,7 +42,9 @@ Before adding the existing CPU extensions, I found unsupported layers. Subsequen
 
 If until this step I had found unsupported layers I would have had to use the layers of the same tensorflow or in any case use another subgraph that is supported and equivalent to the unsupported layer.
 
-***Some of the potential reasons for handling custom layers are:***
+***Reasons for handling custom layers:***
+
+There are layers of given frameworks that are not supported. In addition there are layers that can be supported only by some devices and not supported by the devices (Hardware) in which you are working. In this case, you can create custom layers, add extensions (hardware dependent), or work the layer in the original framework..
 
 ## Comparing Model Performance
 
@@ -53,7 +55,7 @@ involve the following.***
 
 For the evaluation, a portion of the video [Pedestrian_Detect_2_1_1.mp4]() has been taken into account for a 46 frame video size (about 4 seconds).
 
-To run the model with Openvino and see the indicators, it is necessary uncomment lines 221 and 222 and comment lines 214 and 215 , to have the Mosca server active and execute the following command:
+To run the model with Openvino and see the indicators, it is necessary uncomment lines 227 and 228 and comment lines 220 and 221 , to have the Mosca server active and execute the following command:
 
 ```console
 (venv) root@907e6ba7b117:/home/workspace/mask-rcnn/mask_rcnn_resnet101_atrous_coco_2018_01_28# python /home/workspac
@@ -86,7 +88,7 @@ produces the following error:
 Cannot interpret 'tf.uint8' as a data type
 ```
 
-To avoid the error, the line has been commented momentarily, since the precision is float32.
+To avoid the error, the line has been commented momentarily, since the precision is float32 this line is unnecessary in this case.
 
 
 ***Difference between model accuracy pre- and post-conversion***
