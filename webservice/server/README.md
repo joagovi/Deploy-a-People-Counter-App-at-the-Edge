@@ -156,7 +156,7 @@ The precision of the results will depend on the model, there are models that may
 ## Model Research
 
 
-In investigating potential people counter models, I tried one additional model **[YoloV3]**, but since I had already worked with RCNN mask I preferred to use that model and the results were successful.
+In investigating potential people counter models, I tried one additional model **YoloV3**, but since I had already worked with RCNN mask I preferred to use that model and the results were successful.
 
 I Use the [Openvino guidelines](https://docs.openvinotoolkit.org/latest/openvino_docs_MO_DG_prepare_model_convert_model_tf_specific_Convert_YOLO_From_Tensorflow.html) for converting YOLO models.
 
