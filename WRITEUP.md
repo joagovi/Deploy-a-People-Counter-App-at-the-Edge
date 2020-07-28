@@ -3,7 +3,18 @@
 This document explains the first project of the  Intel® Edge AI for IoT developers Nanodegree: Deploy a People counter app on the edge. For development I have used the Udacity workspace.
 
 
-The file to run the application using Openvino is [main.py](https://github.com/joagovi/Deploy-a-People-Counter-App-at-the-Edge/blob/master/main.py). Additionally, because the inference time in the workspace is long, I have considered a modification to this file. This aditional file is in the proyect [Proyect1_B](https://github.com/joagovi/Deploy-a-People-Counter-App-at-the-Edge/tree/master/Proyect1_B) and it makes one inference every 10 frames (1 second) and the frame is only sent to the ffmpeg server every second (The video is 10FPS).
+The file to run the application using Openvino is [main.py](https://github.com/joagovi/Deploy-a-People-Counter-App-at-the-Edge/blob/master/main.py). Additionally, because the inference time in the workspace is long, I have considered a modification to this file. This aditional file is in the proyect [Proyect1_B](https://github.com/joagovi/Deploy-a-People-Counter-App-at-the-Edge/tree/master/Proyect1_B) and it makes one inference every 10 frames (1 second) and the bounding box is only updated every second (The video is 10FPS).
+
+To run the application use:
+
+```console
+(venv) root@04530a0636eb:/home/workspace/mask-rcnn/mask_rcnn_resnet101_atrous_coco_2018_01_28# python /home/workspace/main.py -m frozen_inference_graph.xml  -i /home/workspace/resources/prueba1.mp4 -l /opt/intel/openvino/deployment_tools/inference_engine/lib/intel64/libcpu_extension_sse4.so | ffmpeg -v warning -f rawvideo -pixel_format bgr24 -video_size 768x432 -i - http://0.0.0.0:3004/fac.ffm -framerate 24
+```
+To run the modified application use:
+
+```console
+(venv) root@04530a0636eb:/home/workspace/mask-rcnn/mask_rcnn_resnet101_atrous_coco_2018_01_28# python /home/workspace/Proyect1_B/main.py -m frozen_inference_graph.xml  -i /home/workspace/resources/prueba1.mp4 -l /opt/intel/openvino/deployment_tools/inference_engine/lib/intel64/libcpu_extension_sse4.so | ffmpeg -v warning -f rawvideo -pixel_format bgr24 -video_size 768x432 -i - http://0.0.0.0:3004/fac.ffm -framerate 24
+```
 
 ## Explaining Custom Layers
 
@@ -57,7 +68,7 @@ involve the following.***
 
 For the evaluation, I used the video [prueba1.mp4](https://github.com/joagovi/Deploy-a-People-Counter-App-at-the-Edge/blob/master/resources/prueba1.mp4) which is a portion of the video [Pedestrian_Detect_2_1_1.mp4](https://github.com/joagovi/Deploy-a-People-Counter-App-at-the-Edge/blob/master/resources/Pedestrian_Detect_2_1_1.mp4) has been taken into account for a 46 frame video size (about 4 seconds).
 
-To run the model with Openvino and see the indicators, it is necessary uncomment lines 227 and 228 and comment lines 220 and 221 , to have the Mosca server active and execute the following command:
+To run the model with Openvino and see the indicators, it is necessary uncomment lines 226 and 227 and comment lines 219 and 220 , to have the Mosca server active and execute the following command:
 
 ```console
 (venv) root@907e6ba7b117:/home/workspace/mask-rcnn/mask_rcnn_resnet101_atrous_coco_2018_01_28# python /home/workspac
@@ -145,7 +156,7 @@ The precision of the results will depend on the model, there are models that may
 ## Model Research
 
 
-In investigating potential people counter models, I tried one additional model **[YoloV3]**, but since I had already worked with RCNN mask I preferred to use that model and the results were successful.
+In investigating potential people counter models, I tried one additional model **YoloV3**, but since I had already worked with RCNN mask I preferred to use that model and the results were successful.
 
 I Use the [Openvino guidelines](https://docs.openvinotoolkit.org/latest/openvino_docs_MO_DG_prepare_model_convert_model_tf_specific_Convert_YOLO_From_Tensorflow.html) for converting YOLO models.
 
