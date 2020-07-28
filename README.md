@@ -78,7 +78,7 @@ involve the following.***
 
 For the evaluation, I used the video [prueba1.mp4](https://github.com/joagovi/Deploy-a-People-Counter-App-at-the-Edge/blob/master/resources/prueba1.mp4) which is a portion of the video [Pedestrian_Detect_2_1_1.mp4](https://github.com/joagovi/Deploy-a-People-Counter-App-at-the-Edge/blob/master/resources/Pedestrian_Detect_2_1_1.mp4) has been taken into account for a 46 frame video size (about 4 seconds).
 
-To run the model with Openvino and see the indicators, it is necessary uncomment lines 226 and 227 and comment lines 219 and 220 , to have the Mosca server active and execute the following command:
+To run the model with Openvino and see the indicators, it is necessary modify de [main.py](https://github.com/joagovi/Deploy-a-People-Counter-App-at-the-Edge/blob/master/main.py), uncomment lines 226 and 227 and comment lines 219 and 220 , to have the Mosca server active and execute the following command:
 
 ```console
 (venv) root@907e6ba7b117:/home/workspace/mask-rcnn/mask_rcnn_resnet101_atrous_coco_2018_01_28# python /home/workspac
@@ -90,7 +90,7 @@ tools/inference_engine/lib/intel64/libcpu_extension_sse4.so
 
 The [TensorFlow Object Detection API example](https://github.com/tensorflow/models/blob/master/research/object_detection/colab_tutorials/object_detection_tutorial.ipynb) has been used.
 
-This example has been modified to work with videos to get the comparison indicators, the modified notebook is [Objetc_detection_TF.ipynb]().
+This example has been modified to work with videos to get the comparison indicators, the modified notebook is [Objetc_detection_TF.ipynb](https://github.com/joagovi/Deploy-a-People-Counter-App-at-the-Edge/blob/master/Object_detection_TF.ipynb).
 
 To install and use the object detection API in the Udacity workspace:
 
@@ -136,7 +136,7 @@ root@f9827b69fcc8:/home/workspace/mask-rcnn/mask_rcnn_resnet101_atrous_coco_2018
 I've used [prueba1.mp4](https://github.com/joagovi/Deploy-a-People-Counter-App-at-the-Edge/blob/master/resources/prueba1.mp4) video to compare the average inference times. 
 
 
-To run the main.py file in the workspace:
+To run the [main.py](https://github.com/joagovi/Deploy-a-People-Counter-App-at-the-Edge/blob/master/main.py) file in the workspace:
 ```console
 python /home/workspace/main.py -m frozen_inference_graph.xml  -i /home/workspace/resources/prueba1.mp4 -l /opt/intel/openvino/deployment_tools/inference_engine/lib/intel64/libcpu_extension_sse4.so
 ```
