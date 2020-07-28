@@ -165,16 +165,12 @@ def infer_on_stream(args, client):
 
         if not flag:
             break
-        #flag=0
         ### TODO: Pre-process the image as needed ###
         shape_input=infer_network.get_input_shape()
-        #print(shape_input)
-        #print(frame.shape)
-       
+
         frame_proc=cv2.resize(frame,(shape_input[3],shape_input[2]))
         frame_proc=np.transpose(frame_proc,(2,0,1))
         frame_proc=np.reshape(frame_proc,(1,3,shape_input[2],shape_input[3]))
-        #print(frame_proc.shape)
 
         ### TODO: Start asynchronous inference for specified request ###
         

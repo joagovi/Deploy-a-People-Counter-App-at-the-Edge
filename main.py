@@ -66,7 +66,7 @@ def build_argparser():
                              "CPU, GPU, FPGA or MYRIAD is acceptable. Sample "
                              "will look for a suitable plugin for device "
                              "specified (CPU by default)")
-    parser.add_argument("-pt", "--prob_threshold", type=float, default=0.3,
+    parser.add_argument("-pt", "--prob_threshold", type=float, default=0.6,
                         help="Probability threshold for detections filtering"
                         "(0.5 by default)")
     return parser
@@ -84,12 +84,11 @@ def draw_boxes(frame, result, args, width, height):
     Draw bounding boxes onto the frame.
     '''
     conf_avg=0
-    count_person=0;
+    count_person=0
+    conf=0
     for box in result[0][0]: # Output shape is 1x1x100x7
-        
         if (box[1]==1):
             conf = box[2]
-            print(conf)
             if conf >= args.prob_threshold:
                 count_person+=1
                 conf_avg+=conf
@@ -182,7 +181,7 @@ def infer_on_stream(args, client):
             end = timer()
             elapsed=(end - start)
             elapsed_prom=(elapsed_prom+elapsed)
-            print(elapsed)
+            #print(elapsed)
 
             ### TODO: Get the results of the inference request ###
             output_boxes=infer_network.get_output()
@@ -217,7 +216,7 @@ def infer_on_stream(args, client):
             #out.write(frame) Used for create an Ouput video file
 
             ### TODO: Send the frame to the FFMPEG server ###
-            sys.stdout.buffer.write(frame_out)
+            sys.stdout.buffer.write(frame)
             sys.stdout.flush()
 
     ### TODO: Write an output image if `single_image_mode` ###
